@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Task } from "./shared/task.model";
 
 @Component({
   selector: 'tasks',
@@ -6,7 +7,7 @@ import { Component, OnInit } from "@angular/core";
 })
 export class TasksComponent implements OnInit {
 
-  public tasks: Array<any>;
+  public tasks: Array<Task>;
 
   ngOnInit(): void {
     this.tasks = [
