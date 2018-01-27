@@ -7,7 +7,8 @@ import { Task } from "./shared/task.model";
 })
 export class TasksComponent implements OnInit {
 
-  public tasks: Array<Task>;
+  tasks: Array<Task>;
+  selectedTask: Task;
 
   ngOnInit(): void {
     this.tasks = [
@@ -16,6 +17,11 @@ export class TasksComponent implements OnInit {
       { id: 3, title: 'Fazer tarefa 3' },
       { id: 4, title: 'Fazer tarefa 4' }
     ];
+
+  }
+
+  onSelect(task: Task): void {
+    this.selectedTask = task;
   }
 
 }
