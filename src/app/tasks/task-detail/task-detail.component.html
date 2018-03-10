@@ -1,6 +1,6 @@
 <h1>Detalhes da tarefa {{ task?.title }}</h1>
 
-<form *ngIf="task">
+<div *ngIf="task">
   <div class="form-group row">
     <label for="title" class="col-sm-2 col-form-label">Título</label>
     <div class="col-sm-10">
@@ -12,4 +12,4 @@
       <button type="submit" class="btn btn-success">Salvar</button>
     </div>
   </div>
-</form>
+</div>
