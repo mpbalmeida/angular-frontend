@@ -1,24 +1,19 @@
-<h1>Lista de Tarefas</h1>
+<h1>Painel de controle</h1>
 
 <table class="table">
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Título</th>
+      <th>Tarefas</th>
       <th>Ações</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let task of tasks">
-      <td>{{ task.id }}</td>
-      <td>{{ task.title }}</td>
+      <td>{{task.title}}</td>
       <td>
         <a [routerLink]="['/tasks', task.id]" class="btn btn-info">
           <span class="oi oi-info" title="info" aria-hidden="true"></span>
         </a>
-        <button class="btn btn-danger">
-          <span class="oi oi-trash" title="trash" aria-hidden="true"></span>
-        </button>
       </td>
     </tr>
   </tbody>
