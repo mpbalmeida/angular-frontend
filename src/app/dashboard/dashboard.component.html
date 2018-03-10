@@ -2,17 +2,19 @@
 
 <table class="table">
   <thead>
-    <th>Tarefas</th>
-    <th>Ações</th>
+    <tr>
+      <th>Tarefas</th>
+      <th>Ações</th>
+    </tr>
   </thead>
   <tbody>
     <tr *ngFor="let task of tasks">
       <td>{{task.title}}</td>
       <td>
-          <a [routerLink]="['/tasks', task.id]" class="btn btn-info">
-            <span class="oi oi-info" title="info" aria-hidden="true"></span>
-          </a>
-        </td>
+        <a [routerLink]="['/tasks', task.id]" class="btn btn-info">
+          <span class="oi oi-info" title="info" aria-hidden="true"></span>
+        </a>
+      </td>
     </tr>
   </tbody>
 </table>
