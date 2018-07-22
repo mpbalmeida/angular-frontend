@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
-import { Task } from "./shared/task.model";
-import { TaskService } from "./shared/task.service";
+import { Component, OnInit } from '@angular/core';
+import { Task } from './shared/task.model';
+import { TaskService } from './shared/task.service';
 
 @Component({
   selector: 'tasks',
@@ -15,8 +15,10 @@ export class TasksComponent implements OnInit {
 
   ngOnInit(): void {
     this.taskService.getTasks()
-      .then(tasks => this.tasks = tasks)
-      .catch(error => alert(error));
+      .subscribe(
+        tasks => this.tasks = tasks,
+        error => alert('Ocorreu um erro no servidor, tente novamente mais tarde')
+      );
   }
 
   onSelect(task: Task): void {
