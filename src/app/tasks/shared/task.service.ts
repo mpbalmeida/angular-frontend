@@ -1,20 +1,12 @@
-import { Http, Response } from "@angular/http";
-import { Injectable } from "@angular/core";
+import { Http, Response } from '@angular/http';
+import { Injectable } from '@angular/core';
 
-import { Task } from "./task.model";
-import { Observable } from "rxjs/Observable";
+import { Task } from './task.model';
+import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
-
-const TASKS: Array<Task> = [
-  { id: 1, title: 'Fazer tarefa 1' },
-  { id: 2, title: 'Fazer tarefa 2' },
-  { id: 3, title: 'Fazer tarefa 3' },
-  { id: 4, title: 'Fazer tarefa 4' },
-  { id: 5, title: 'Fazer tarefa 5' },
-  { id: 6, title: 'Fazer tarefa 6' },
-  { id: 7, title: 'Fazer tarefa 7' }
-];
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class TaskService {
@@ -25,11 +17,14 @@ export class TaskService {
 
   public getTasks(): Observable<Task[]> {
     return this.http.get(this.tasksUrl)
-      .map((response: Response) => response.json().data as Task[]);
+      .catch(this.handleErrors)
+      .map((response: Response) => response.json() as Task[]);
   }
 
-  public getImportantTasks(): Promise<Task[]> {
-    return Promise.resolve(TASKS.slice(0, 3));
+  public getImportantTasks(): Observable<Task[]> {
+    return this.getTasks()
+      .catch(this.handleErrors)
+      .map((tasks: Task[]) => tasks.slice(0, 3));
   }
 
   public getTask(id: number): Observable<Task> {
@@ -37,6 +32,13 @@ export class TaskService {
     const url = `${this.tasksUrl}/${id}`;
 
     return this.http.get(url)
-      .map((response: Response) => response.json().data as Task);
+      .catch(this.handleErrors)
+      .map((response: Response) => response.json() as Task);
+  }
+
+  private handleErrors(error: Response) {
+    console.log('Salvando o erro num arquivo de logs => ', error);
+
+    return Observable.throw(error);
   }
 }

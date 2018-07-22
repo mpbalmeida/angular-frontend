@@ -1,12 +1,11 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { InMemoryDbService } from "angular-in-memory-web-api";
+import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 @Injectable()
 export class InMemoryTaskDataService implements InMemoryDbService {
-  
   createDb() {
-    let tasks = [
+    const tasks = [
       { id: 1, title: 'Fazer tarefa 1' },
       { id: 2, title: 'Fazer tarefa 2' },
       { id: 3, title: 'Fazer tarefa 3' },

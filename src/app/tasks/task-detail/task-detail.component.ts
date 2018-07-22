@@ -23,7 +23,10 @@ export class TaskDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params //params já é responsável por fazer o unsubscribe
       .switchMap((params: Params) => this.taskService.getTask(+params['id']))
-      .subscribe(task => this.task = task)
+      .subscribe(
+        task => this.task = task,
+        error => alert('Ocorreu um erro, tente mais tarde')
+      );
   }
 
   goBack() {

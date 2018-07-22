@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
-import { Task } from "../tasks/shared/task.model";
-import { TaskService } from "../tasks/shared/task.service";
+import { Task } from '../tasks/shared/task.model';
+import { TaskService } from '../tasks/shared/task.service';
 
 @Component({
   selector: 'dashboard',
@@ -16,7 +16,9 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.taskService.getImportantTasks()
-      .then(tasks => this.tasks = tasks)
-      .catch(error => console.log(error));
+      .subscribe(
+        tasks => this.tasks = tasks,
+        error => alert('Ocorreu um erro, tente novamente mais tarde')
+      );
   }
 }
