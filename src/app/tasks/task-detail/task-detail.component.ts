@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from "@angular/router";
-import { Location } from "@angular/common";
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
 
-import "rxjs/add/operator/switchMap";
+import 'rxjs/add/operator/switchMap';
 
 import { Task } from '../shared/task.model';
-import { TaskService } from "../shared/task.service";
+import { TaskService } from '../shared/task.service';
 
 @Component({
   selector: 'task-detail',
@@ -31,5 +31,17 @@ export class TaskDetailComponent implements OnInit {
 
   goBack() {
     this.location.back();
+  }
+
+  updateTask() {
+    if (!this.task.title) {
+      alert('Tarefa deve conter um títutlo');
+    } else {
+      this.taskService.updateTask(this.task)
+        .subscribe(
+          () => alert('Tarefa atualizada com sucesso'),
+          error => alert('Ocorreu um erro no servidor')
+        )
+    }
   }
 }

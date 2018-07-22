@@ -1,4 +1,4 @@
-import { Http, Response } from '@angular/http';
+import { Headers, Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 import { Task } from './task.model';
@@ -34,6 +34,16 @@ export class TaskService {
     return this.http.get(url)
       .catch(this.handleErrors)
       .map((response: Response) => response.json() as Task);
+  }
+
+  public updateTask(task: Task): Observable<Task> {
+    const url = `${this.tasksUrl}/${task.id}`;
+    const body = JSON.stringify(task);
+    const headers = new Headers({'Content-Type': 'application/json'});
+
+    return this.http.put(url, body, {headers: headers})
+        .catch(this.handleErrors)
+        .map(() => task);
   }
 
   private handleErrors(error: Response) {
