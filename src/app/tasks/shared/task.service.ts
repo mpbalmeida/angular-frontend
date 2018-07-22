@@ -15,19 +15,19 @@ export class TaskService {
 
   public constructor(private http: Http) { }
 
-  public getTasks(): Observable<Task[]> {
+  public getAll(): Observable<Task[]> {
     return this.http.get(this.tasksUrl)
       .catch(this.handleErrors)
       .map((response: Response) => response.json() as Task[]);
   }
 
-  public getImportantTasks(): Observable<Task[]> {
-    return this.getTasks()
+  public getImportant(): Observable<Task[]> {
+    return this.getAll()
       .catch(this.handleErrors)
       .map((tasks: Task[]) => tasks.slice(0, 3));
   }
 
-  public getTask(id: number): Observable<Task> {
+  public getById(id: number): Observable<Task> {
 
     const url = `${this.tasksUrl}/${id}`;
 
@@ -36,7 +36,7 @@ export class TaskService {
       .map((response: Response) => response.json() as Task);
   }
 
-  public createTask(task: Task): Observable<Task> {
+  public create(task: Task): Observable<Task> {
     const body = JSON.stringify(task);
     const headers = new Headers({'Content-Type': 'application/json'});
 
@@ -45,7 +45,7 @@ export class TaskService {
         .map((response: Response) => response.json() as Task);
   }
 
-  public updateTask(task: Task): Observable<Task> {
+  public update(task: Task): Observable<Task> {
     const url = `${this.tasksUrl}/${task.id}`;
     const body = JSON.stringify(task);
     const headers = new Headers({'Content-Type': 'application/json'});
@@ -55,7 +55,7 @@ export class TaskService {
         .map(() => task);
   }
 
-  public deleteTask(id: number): Observable<null> {
+  public delete(id: number): Observable<null> {
     const url = `${this.tasksUrl}/${id}`;
     const headers = new Headers({'Content-Type': 'application/json'});
 
