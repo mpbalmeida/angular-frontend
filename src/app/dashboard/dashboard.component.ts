@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
-import { Task } from "../tasks/shared/task.model";
-import { TaskService } from "../tasks/shared/task.service";
+import { Task } from '../tasks/shared/task.model';
+import { TaskService } from '../tasks/shared/task.service';
 
 @Component({
-  selector: 'dashboard',
+  selector: 'app-dashboard',
   templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
@@ -15,8 +15,10 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.taskService.getImportantTasks()
-      .then(tasks => this.tasks = tasks)
-      .catch(error => console.log(error));
+    this.taskService.getImportant()
+      .subscribe(
+        tasks => this.tasks = tasks,
+        error => alert('Ocorreu um erro, tente novamente mais tarde')
+      );
   }
 }
