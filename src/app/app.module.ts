@@ -1,7 +1,7 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -16,6 +16,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryTaskDataService } from './in-memory-task-data.service';
 import { TaskSearchComponent } from './navbar/task-search/task-search.component';
+
+//rxjs operators
+
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
+
+//rxjs extensions
+
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/throw';
 
 @NgModule({
   declarations: [
