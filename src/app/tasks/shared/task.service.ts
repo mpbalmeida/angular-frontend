@@ -12,6 +12,7 @@ import 'rxjs/add/observable/throw';
 export class TaskService {
 
   public tasksUrl = 'api/tasks';
+  headers = new Headers({'Content-Type': 'application/json'});
 
   public constructor(private http: Http) { }
 
@@ -38,9 +39,8 @@ export class TaskService {
 
   public create(task: Task): Observable<Task> {
     const body = JSON.stringify(task);
-    const headers = new Headers({'Content-Type': 'application/json'});
 
-    return this.http.post(this.tasksUrl, body, {headers: headers})
+    return this.http.post(this.tasksUrl, body, {headers: this.headers})
         .catch(this.handleErrors)
         .map((response: Response) => response.json() as Task);
   }
@@ -48,20 +48,26 @@ export class TaskService {
   public update(task: Task): Observable<Task> {
     const url = `${this.tasksUrl}/${task.id}`;
     const body = JSON.stringify(task);
-    const headers = new Headers({'Content-Type': 'application/json'});
 
-    return this.http.put(url, body, {headers: headers})
+    return this.http.put(url, body, {headers: this.headers })
         .catch(this.handleErrors)
         .map(() => task);
   }
 
   public delete(id: number): Observable<null> {
     const url = `${this.tasksUrl}/${id}`;
-    const headers = new Headers({'Content-Type': 'application/json'});
 
-    return this.http.delete(url, { headers: headers })
+    return this.http.delete(url, { headers: this.headers })
       .catch(this.handleErrors)
       .map(() => null);
+  }
+
+  public searchByTitle(term: string): Observable<Task[]> {
+    const url = `${this.tasksUrl}?title=${term}`;
+
+    return this.http.get(url)
+      .catch(this.handleErrors)
+      .map((response: Response) => response.json() as Task[]);
   }
 
   private handleErrors(error: Response) {
