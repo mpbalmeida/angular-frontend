@@ -17,7 +17,7 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryTaskDataService } from './in-memory-task-data.service';
 import { TaskSearchComponent } from './navbar/task-search/task-search.component';
 
-//rxjs operators
+// rxjs operators
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
@@ -26,7 +26,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 
-//rxjs extensions
+// rxjs extensions
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
@@ -44,8 +44,8 @@ import 'rxjs/add/observable/throw';
     AppRoutingModule,
     BrowserModule,
     FormsModule,
-    InMemoryWebApiModule.forRoot(InMemoryTaskDataService),
-    HttpModule
+    HttpModule,
+    InMemoryWebApiModule.forRoot(InMemoryTaskDataService)
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]
