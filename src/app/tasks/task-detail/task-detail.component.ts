@@ -46,4 +46,8 @@ export class TaskDetailComponent implements OnInit {
         );
     }
   }
+
+  showFieldError(field): boolean {
+    return field.invalid && (field.touched || field.dirty);
+  }
 }
