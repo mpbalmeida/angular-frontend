@@ -1,6 +1,6 @@
 <h1>Detalhes da tarefa {{ task?.title }}</h1>
 <hr/>
-<form #taskForm="ngForm" *ngIf="task">
+<form #taskForm="ngForm" *ngIf="task" (ngSubmit)="updateTask()">
   <div class="form-row">
     <div class="form-group col-md-6" >
       <label for="title">Título</label>
@@ -34,7 +34,7 @@
     </div>
   </div>
 
+  <button [disabled]="taskForm.invalid" type="submit" class="btn btn-success" >Atualizar</button>
   <button class="btn btn-default" (click)="goBack()">Voltar</button>
-  <button [disabled]="taskForm.invalid" type="submit" class="btn btn-success" (click)="updateTask()">Atualizar</button>
 
 </form>

@@ -30,9 +30,7 @@ import 'rxjs/add/operator/switchMap';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
-
-//jquery
-import * as $ from 'jquery';
+import {NgTempusdominusBootstrapModule} from 'ngx-tempusdominus-bootstrap';
 
 @NgModule({
   declarations: [
@@ -48,7 +46,8 @@ import * as $ from 'jquery';
     BrowserModule,
     FormsModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryTaskDataService)
+    InMemoryWebApiModule.forRoot(InMemoryTaskDataService),
+    NgTempusdominusBootstrapModule
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]
