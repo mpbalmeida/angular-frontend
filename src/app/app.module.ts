@@ -17,7 +17,7 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryTaskDataService } from './in-memory-task-data.service';
 import { TaskSearchComponent } from './navbar/task-search/task-search.component';
 
-//rxjs operators
+// rxjs operators
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
@@ -26,10 +26,11 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 
-//rxjs extensions
+// rxjs extensions
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
+import {NgTempusdominusBootstrapModule} from 'ngx-tempusdominus-bootstrap';
 
 @NgModule({
   declarations: [
@@ -44,8 +45,9 @@ import 'rxjs/add/observable/throw';
     AppRoutingModule,
     BrowserModule,
     FormsModule,
+    HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryTaskDataService),
-    HttpModule
+    NgTempusdominusBootstrapModule
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]
